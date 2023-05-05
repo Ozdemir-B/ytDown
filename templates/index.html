@@ -1,0 +1,66 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;1,700&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>YT DOWN</title>
+
+    <style>
+      
+      html, body {
+        font-family: 'Roboto Mono', monospace;
+      }
+
+    </style>
+
+  </head>
+  <body>
+    <div class="w-100">
+        <div class="text-center bg-danger text-light p-3">
+          <h1 class="display-1">YT Downloader</h1>
+          <h3 class="display-6 mt-4"> by B.O.</h3>
+        </div>
+
+        <div class="col-sm-4 col-m-4 m-auto mt-5 ">
+          <form method="POST" action="{{url_for('home')}}">
+            <div class="d-flex">
+              <input type="text" class="form-control" name="inputUrl" placeholder="youtube url" aria-describedby="emailHelp">
+              <button type="submit" class="btn btn-danger mx-2">Download</button>
+            </div>
+            
+          </form>
+        </div>
+
+        {% if video %}
+          <center>
+            <div class="col-sm-6 col-md-6 col-lg-4 m-auto mt-5 ">
+          <a href={{video[0]}} download="filename.mp4" class="link-success">{{ video[1] }}</a>
+          </div>
+          </center>
+        {% endif %}
+
+        <!--
+                    <div class="col-sm-6 col-md-6 col-lg-4 m-auto mt-5 ">
+          <ul class="list-group  d-flex">
+            {% for r in data %}
+              <li class="list-group-item d-flex flex-row justify-content-between">{{r}} <span class="badge bg-success">{{ data[r] }}</span></li>
+            {% endfor %}
+          </ul>
+        </div>
+        -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  </body>
+</html>
