@@ -22,11 +22,15 @@ def down(url:str):
     except Exception as e:
         print(e)
     print(url)
-    url=url.split("?")[0]
+    #url=url.split("?")[0]
     #url = f"https://www.youtube.com/{url}"
     myuuid = str(uuid.uuid4())
     result,title = yt.download_video(url,myuuid)
-    thumbnail = yt.get_thumbnail(url)
+    print("debug1")
+    try:
+        thumbnail = yt.get_thumbnail(url)
+    except Exception as e:
+        thumbnail = "Error"
     last_vid = result
     print("result:::")
     print(result)

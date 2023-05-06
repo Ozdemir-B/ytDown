@@ -87,11 +87,10 @@ class YouTube:
             if duration and duration <= 60:
                 # Set save folder and file name
                 #print(video_info)
-                for v in video_info:
-                    pass
-                    #print(v,end="--")
-                print(type(video_info.get("thumbnail")))
-                print(video_info.get("thumbnail"))
+                
+                #print(v,end="--")
+                #print(type(video_info.get("thumbnail")))
+                #print(video_info.get("thumbnail"))
                 title: str = video_info.get("title")
                 print(title)
                 path_to_file: str = f"static/{id}.mp4"
