@@ -26,12 +26,13 @@ def down(url:str):
     #url = f"https://www.youtube.com/{url}"
     myuuid = str(uuid.uuid4())
     result,title = yt.download_video(url,myuuid)
+    thumbnail = yt.get_thumbnail(url)
     last_vid = result
     print("result:::")
     print(result)
     if result:
         last_img = result
-        return (result,title,myuuid)
+        return (result,title,thumbnail)
     else:
         return (None , None, None)
     
@@ -64,14 +65,9 @@ def home():
         print(keyword)
         if keyword:
             try:
-                result,title,vid_id = down(str(keyword))
-                return render_template("index.html",video=[result,title])
-                return send_file(
-                    result,
-                    as_attachment=True,
-                    attachment_filename=f"{vid_id}.mp4",
-                    mimetype="video/mp4",
-                )
+                result,title,thumb = down(str(keyword))
+                return render_template("index.html",video=[result,title,thumb])
+                
             except Exception as e:
                 print(e)
                 return "Error"

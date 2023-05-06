@@ -32,6 +32,35 @@ class YouTube:
         return processed_string
 
     
+    def get_thumbnail(self,url:str) -> Any:
+        """
+        Downloads the best video stream from the YouTube Shorts link
+        Note: Do not use named arguments when calling this method
+        Args:
+            youtube_watch_url (): link to YouTube Shorts video
+        Returns:
+            The path to the uploaded video file, or None if the original video file is a live broadcast
+        """
+        options: dict = {
+            "format": "best",
+            "geo_bypass": True,
+            "noplaylist": True,
+            "noprogress": True,
+            "quiet": True,
+        }
+        ydl: YoutubeDL = YoutubeDL(params=options)
+
+        try:
+            # Getting information about the video
+            video_info = ydl.extract_info(url, download=False)
+
+            return video_info.get("thumbnail")
+        except Exception as e:
+            print("getThumbnail error ::: ")
+            print(e)
+            return "Error"
+    
+    
     def download_video(self, youtube_watch_url: str,id:str) -> Any:
         """
         Downloads the best video stream from the YouTube Shorts link
@@ -58,6 +87,11 @@ class YouTube:
             if duration and duration <= 60:
                 # Set save folder and file name
                 #print(video_info)
+                for v in video_info:
+                    pass
+                    #print(v,end="--")
+                print(type(video_info.get("thumbnail")))
+                print(video_info.get("thumbnail"))
                 title: str = video_info.get("title")
                 print(title)
                 path_to_file: str = f"static/{id}.mp4"
